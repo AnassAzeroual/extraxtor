@@ -1,0 +1,20 @@
+#global {
+    background: #DDDAE0;
+    height: 100vh;
+    textarea{
+        background: #BF9D7E;
+        color: black;
+        box-shadow: 0 0 0 0.2rem #BF9D7E !important;
+    }
+    .form-control {
+        &:focus {
+            background-color: #BF9D7E !important;
+            border-color: #DDDAE0 !important;
+            outline: 0 !important;
+            box-shadow: 0 0 0 0.2rem #BF9D7E !important;
+        }
+    }
+    img {
+        width: 15px;
+    }
+}

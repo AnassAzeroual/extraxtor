@@ -1,0 +1,14 @@
+<div id="global">
+    <p-toast></p-toast>
+  <div class="container">
+    <h2 class="h2">Extract emails</h2>
+    <div>
+      <textarea autofocus spellcheck="false" [(ngModel)]="emails" placeholder="Lorem ipsum ABC@data.com ... set EXAMPLE@box.ma adipisicing ..." cols="30" rows="10" class="form-control"></textarea>
+    </div>
+    <div class="text-right mt-3">
+      <button class="btn btn-primary" (click)="checkEmailsFormat()">Extract emails</button>
+      <button (click)="downlad()" class="btn btn-success ml-3"><img class="" src="/assets/icondownloadfiletext.png" alt=""> Download</button>
+      
+    </div>
+  </div>
+</div>
