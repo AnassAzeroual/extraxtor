@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { MessageService } from "primeng/api";
 import { Observable, of } from "rxjs";
+import { DomSanitizer } from '@angular/platform-browser';
+import { GetByUrlService } from './services/get-by-url.service';
 
 @Component({
   selector: 'app-root',
@@ -10,13 +12,23 @@ import { Observable, of } from "rxjs";
 export class AppComponent {
   title = 'extractor';
   emails:any = [];
-constructor(private messageService: MessageService) {}
+  fileUrl;
+  dataHTML: any;
+  url: string;
+constructor(
+  private messageService: MessageService,
+  private sanitizer: DomSanitizer,
+  private getByUrlService:GetByUrlService
+  ) {}
 
   ngOnInit(): void {}
 
     /* ---------------------------- checkEmailsFormat --------------------------- */
 
-    checkEmailsFormat(): boolean {
+    checkEmailsFormat(data:any): boolean {
+      if (data.length > 0) {
+        this.emails = data
+      }
       //* check if input of email empty
       if (this.emails.length <= 0) {
         return false;
@@ -72,43 +84,20 @@ constructor(private messageService: MessageService) {}
 
 
 
-  //********************************************* */
+  //**********************************************/
   downlad(){
-//* check if empty result
-if (this.emails) {
-  this.dynamicDownloadTxt()
-}
+    //* check if empty result
+    if (this.emails.length > 0) {
+      const blob = new Blob([this.emails], { type: 'application/octet-stream' });
+      this.fileUrl = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(blob));
+    }
   }
-  fakeValidateUserData() {
-    return of(this.emails);
-  }
-
-  //
 
   private setting = {
     element: {
       dynamicDownload: null as HTMLElement
     }
   }
-
-  dynamicDownloadTxt() {
-    this.fakeValidateUserData().subscribe((res) => {
-      this.dyanmicDownloadByHtmlTag({
-        fileName: 'extractor.ma_List_emails.txt',
-        text: res
-      });
-    });
-
-  }
-
-  // dynamicDownloadJson() {
-  //   this.fakeValidateUserData().subscribe((res) => {
-  //     this.dyanmicDownloadByHtmlTag({
-  //       fileName: 'My Report.json',
-  //       text: JSON.stringify(res)
-  //     });
-  //   });
-  // }
 
   private dyanmicDownloadByHtmlTag(arg: {
     fileName: string,
@@ -124,5 +113,15 @@ if (this.emails) {
 
     var event = new MouseEvent("click");
     element.dispatchEvent(event);
+  }
+
+  //*********************************************** */
+  getByUrl()
+  {
+    this.getByUrlService.getByURL(this.url).subscribe(
+      res => {
+        this.checkEmailsFormat(res)
+      }
+    )
   }
 }
