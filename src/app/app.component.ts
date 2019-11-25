@@ -15,6 +15,7 @@ export class AppComponent {
   fileUrl;
   dataHTML: any;
   url: string;
+  showSpeener:boolean = false
 constructor(
   private messageService: MessageService,
   private sanitizer: DomSanitizer,
@@ -57,7 +58,7 @@ constructor(
           }
         }
       });
-  
+      this.showSpeener = false
     }
   
     /* --------------------------- checkEmailsDeplicat -------------------------- */
@@ -118,6 +119,8 @@ constructor(
   //*********************************************** */
   getByUrl()
   {
+    this.showSpeener = true
+    this.emails = ""
     this.getByUrlService.getByURL(this.url).subscribe(
       res => {
         this.checkEmailsFormat(res)
