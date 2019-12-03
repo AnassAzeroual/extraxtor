@@ -2,19 +2,20 @@
     font-family: 'gotham_medium', Arial, sans-serif;
 }
 #global {
-    background: #DDDAE0;
+    background: #1F2739;
     height: 100vh;
+    color: azure;
     textarea{
-        background: #BF9D7E;
+        background: #d4d9dd;
         color: black;
-        box-shadow: 0 0 0 0.2rem #BF9D7E !important;
+        box-shadow: 0 0 0 0.2rem #d4d9dd !important;
     }
     .form-control {
         &:focus {
-            background-color: #BF9D7E !important;
+            background-color: #d4d9dd !important;
             border-color: #DDDAE0 !important;
             outline: 0 !important;
-            box-shadow: 0 0 0 0.2rem #BF9D7E !important;
+            box-shadow: 0 0 0 0.2rem #d4d9dd !important;
         }
     }
     img {
@@ -23,7 +24,7 @@
 }
 
 input {
-    background: #bf9d7e;
+    background: #d4d9dd;
 }
 
 @keyframes ui-progress-spinner-color {

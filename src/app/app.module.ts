@@ -7,12 +7,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
-import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { AppComponent } from './app.component';
+import { Sp01Component } from './shared/speeners/sp01/sp01.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    Sp01Component
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -20,7 +21,6 @@ import { AppComponent } from './app.component';
     BrowserAnimationsModule,
     FormsModule,
     ToastModule,
-    ProgressSpinnerModule,
     HttpClientModule,
     HttpClientJsonpModule
   ],
