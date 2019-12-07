@@ -1,0 +1,23 @@
+<div id="global" class="arrow">
+    <p-toast></p-toast>
+    <speener_6_bond *ngIf="showSpeener" class="speener"></speener_6_bond>
+    <div class="container">
+        <h2 class="h2">Extract By URL</h2>
+        <form [formGroup]="urlForm" (ngSubmit)="getByUrl()">
+        <div>
+                <input type="text" class="form-control mb-3" formControlName="url" required placeholder="URL">
+            </div>
+            <div>
+                <textarea autofocus spellcheck="false" formControlName="emails"
+                placeholder="Lorem ipsum ABC@data.com ... set EXAMPLE@box.ma adipisicing ..." cols="30" rows="10"
+                class="form-control"></textarea>
+            </div>
+            <div class="text-right mt-3">
+                <input type="submit" class="btn btn-primary" [disabled]="!urlForm.valid" value="Extract">
+                <a [href]="fileUrl" download="extractor.txt" (click)="downlad()" *ngIf="downloadable" class="btn btn-success ml-3">
+                    <img src="/assets/icondownloadfiletext.png"> Emails
+                </a>
+            </div>
+        </form>
+    </div>
+</div>

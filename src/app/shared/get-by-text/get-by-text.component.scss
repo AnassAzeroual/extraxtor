@@ -1,0 +1,44 @@
+*{
+    font-family: 'gotham_medium', Arial, sans-serif;
+}
+#global {
+    margin-left: auto;
+    margin-right: auto;
+    background: #1F2739;
+    color: azure;
+    width: 700px;
+    padding: 20px;
+    textarea{
+        background: #d4d9dd;
+        color: black;
+        box-shadow: 0 0 0 0.2rem #d4d9dd !important;
+    }
+    .form-control {
+        &:focus {
+            background-color: #d4d9dd !important;
+            border-color: #DDDAE0 !important;
+            outline: 0 !important;
+            box-shadow: 0 0 0 0.2rem #d4d9dd !important;
+        }
+    }
+    img {
+        width: 15px;
+    }
+}
+.arrow{
+    &:after {
+        content: "";
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 10px solid rgb(31, 39, 57);
+        position: relative;
+        bottom: 405px;
+        left: 427px;
+    }
+}
+
+input {
+    background: #d4d9dd;
+}
