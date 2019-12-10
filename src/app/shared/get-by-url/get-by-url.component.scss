@@ -27,9 +27,11 @@
 }
 
 input:not(.btn) {
-    background: #d4d9dd;
+    background: #f8f9fa;
 }
-
+.ng-valid input:not(.btn){
+    border: 1px solid #28a745;
+}
 .arrow{
     &:after {
         content: "";
@@ -41,5 +43,15 @@ input:not(.btn) {
         position: relative;
         bottom: 459px;
         left: 212px;
+    }
+}
+
+.box2 {
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    input {
+        cursor: pointer;
     }
 }

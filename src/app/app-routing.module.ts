@@ -6,18 +6,18 @@ import { GetByTextComponent } from './shared/get-by-text/get-by-text.component';
 
 
 const routes: Routes = [
-  { path:'', component:AccueilComponent },
+  { path:'', redirectTo:'home', pathMatch: 'full' },
   {
     path:'home',
     component:AccueilComponent,
     children: [
-      { path:'', redirectTo:'getByURL' },
+      { path:'', redirectTo:'getByURL', pathMatch: 'full' },
       { path:'getByURL', component:GetByUrlComponent },
       { path:'getByTEXT', component:GetByTextComponent },
-      { path:'**', redirectTo:'getByURL'}
+      { path:'**', component: GetByUrlComponent }
     ]
   },
-  { path:'**', redirectTo:'home' }
+  { path: '**', component: GetByUrlComponent }
 ];
 
 @NgModule({

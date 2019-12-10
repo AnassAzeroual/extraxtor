@@ -6,7 +6,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 })
 export class GetByUrlService {
   httpOptions = {
-    headers: new HttpHeaders({"Access-Control-Allow-Origin" : "*" })
+    headers: new HttpHeaders({"Access-Control-Allow-Origin" : "http://localhost:4200" })
   };
   constructor(private http:HttpClient) { }
   
