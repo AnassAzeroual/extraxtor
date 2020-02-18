@@ -8,12 +8,10 @@
                 <div class="box1"><input type="text" class="form-control mb-3" formControlName="url" required placeholder="URL"></div>
                 <div class="box2"><input type="submit" class="btn btn-primary" [disabled]="!urlForm.valid" value="Extract"></div>
             </div>
-            <div *ngIf="true">
-                <textarea autofocus spellcheck="false" formControlName="emails"
-                placeholder="Lorem ipsum ABC@data.com ... set EXAMPLE@box.ma adipisicing ..." cols="30" rows="10"
-                class="form-control"></textarea>
+            <div *ngIf="disableZone">
+                <textarea autofocus spellcheck="false" formControlName="emails" cols="30" rows="10" class="form-control"></textarea>
             </div>
-            <div class="text-right">
+            <div class="text-right mt-3">
                 <a [href]="fileUrl" download="extractor.txt" (click)="downlad()" *ngIf="downloadable" class="btn btn-success ml-3">
                     <img src="/assets/icondownloadfiletext.png"> Emails
                 </a>

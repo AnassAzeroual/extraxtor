@@ -2,7 +2,7 @@
         <p-toast></p-toast>
         <speener_6_bond *ngIf="showSpeener" class="speener"></speener_6_bond>
         <div class="container">
-            <h2 class="h2">Extract By TEXT</h2>
+            <h2 class="h2">Extract By HTML</h2>
             <div>
                 <textarea autofocus spellcheck="false" [(ngModel)]="emails"
                     placeholder="Lorem ipsum ABC@data.com ... set EXAMPLE@box.ma adipisicing ..." cols="30" rows="10"
@@ -13,7 +13,7 @@
                 <button class="btn btn-primary" (click)="getByTEXT()">Extract</button>
 
                 <a [href]="fileUrl" download="extractor.txt" (click)="downlad()" *ngIf="downloadable" class="btn btn-success ml-3">
-                    <img src="/assets/icondownloadfiletext.png"> File
+                    <img src="/assets/icondownloadfiletext.png"> Download
                 </a>
 
             </div>

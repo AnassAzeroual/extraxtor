@@ -19,6 +19,7 @@ export class GetByUrlComponent implements OnInit {
   urlForm: any;
   emailsContainer: any = ''
   downloadable:boolean = false
+  disableZone:boolean = false
   constructor(
     private messageService: MessageService,
     private sanitizer: DomSanitizer,
@@ -63,6 +64,9 @@ export class GetByUrlComponent implements OnInit {
         }
       }
     });
+    //* show/hide zone emails 
+    this.disableZone = (this.emailsContainer.indexOf("@") >= 0)?true:false
+
     this.urlForm.controls['emails'].setValue(this.emailsContainer)
     this.showSpeener = false
   }
