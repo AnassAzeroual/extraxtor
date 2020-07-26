@@ -4,6 +4,8 @@ import { Observable, of } from "rxjs";
 import { DomSanitizer } from '@angular/platform-browser';
 import { GetByUrlService } from 'src/app/services/get-by-url.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import * as copy from 'copy-text-to-clipboard';
+
 
 @Component({
   selector: 'app-get-by-url',
@@ -20,6 +22,7 @@ export class GetByUrlComponent implements OnInit {
   emailsContainer: any = ''
   downloadable:boolean = false
   disableZone:boolean = false
+  tableEmails: any[];
   constructor(
     private messageService: MessageService,
     private sanitizer: DomSanitizer,
@@ -43,9 +46,11 @@ export class GetByUrlComponent implements OnInit {
     if (data.length <= 0) {
       return false;
     }
-
+    this.emailsContainer = "";
+    this.tableEmails = [];
+    let emails: any = ""
     //* declare new container of data
-    let emails: any = data
+    emails = data
     //* regex split data
     emails = emails.split(/[,/+*'`$%!><^:;=&~|\\" "\n\t]/);
 
@@ -57,14 +62,13 @@ export class GetByUrlComponent implements OnInit {
       if (re.test(String(e).toLowerCase())) {
         if (this.checkEmailsDeplicat(e)) {
           this.emailsContainer += e.toLowerCase() + ",";
-        }
-      } else {
-        if (e.indexOf("@") >= 0) {
-          this.notifay(e, "warn", "Email no valide format!");
+          this.tableEmails.push({
+            email:e
+          })
         }
       }
     });
-    //* show/hide zone emails 
+    //* show/hide zone emails
     this.disableZone = (this.emailsContainer.indexOf("@") >= 0)?true:false
 
     this.urlForm.controls['emails'].setValue(this.emailsContainer)
@@ -112,14 +116,14 @@ getByUrl()
   this.urlForm.controls['emails'].setValue('')
 
   let regxURL = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/
-  
+
   if (regxURL.test(this.urlForm.get('url').value))
   {
     this.getByUrlService.getByURL(this.urlForm.get('url').value)
     .subscribe(
       res =>
       {
-        this.checkEmailsFormat(res)
+        this.checkEmailsFormat(res['html'])
       }
     )
   }
@@ -131,4 +135,13 @@ getByUrl()
   }
 }
 
+
+/* -------------------------------------------------------------------------- */
+/*                                    Copy                                    */
+/* -------------------------------------------------------------------------- */
+copy(data)
+{
+  console.log(data);
+copy(data)
+}
 }

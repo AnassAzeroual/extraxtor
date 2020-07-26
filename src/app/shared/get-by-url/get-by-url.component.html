@@ -8,14 +8,48 @@
                 <div class="box1"><input type="text" class="form-control mb-3" formControlName="url" required placeholder="URL"></div>
                 <div class="box2"><input type="submit" class="btn btn-primary" [disabled]="!urlForm.valid" value="Extract"></div>
             </div>
-            <div *ngIf="disableZone">
+            <div *ngIf="disableZone">tableEmails
+
                 <textarea autofocus spellcheck="false" formControlName="emails" cols="30" rows="10" class="form-control"></textarea>
             </div>
             <div class="text-right mt-3">
                 <a [href]="fileUrl" download="extractor.txt" (click)="downlad()" *ngIf="downloadable" class="btn btn-success ml-3">
-                    <img src="/assets/icondownloadfiletext.png"> Emails
+                    <img src="/assets/icondownloadfiletext.png"> Download
                 </a>
             </div>
         </form>
     </div>
+</div>
+
+
+<div class="wrapper">
+
+  <div class="table">
+
+    <div class="row header blue">
+      <div class="cell">
+        ID
+      </div>
+      <div class="cell">
+        Email
+      </div>
+      <div class="cell">
+        Copy
+      </div>
+    </div>
+
+    <div class="row" *ngFor="let item of tableEmails; let i=index">
+      <div class="cell" data-title="id">
+        {{item.id}}
+      </div>
+      <div class="cell" data-title="Email">
+        {{item.email}}
+      </div>
+      <div class="cell" data-title="copy">
+        <i class="far fa-copy pointer" (click)="copy(item.email)"></i>
+      </div>
+    </div>
+
+  </div>
+
 </div>

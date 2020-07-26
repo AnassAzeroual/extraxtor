@@ -2,11 +2,10 @@
     background: linear-gradient(rgba(255, 255, 255, 0.34) 0%, #007bff5c), url('./../../../assets/img/19276.jpg');
     background-size: cover;
     background-attachment: fixed;
-    width: 100%;
-    height: 100vh;
+    // width: 100%;
+    // height: 100vh;
     padding: 10px;
     overflow: auto;
-
     .box_in_middle{
         width: 394px;
         padding-top: 10vh;
@@ -22,7 +21,7 @@
         background: #47525d;
         position: relative;
         width: 160px;
-        height: 100px;
+        height: 77px;
         cursor: pointer;
         color: white;
         overflow: auto;
@@ -32,7 +31,7 @@
         }
         .div {
             position: absolute;
-            width: 200px;
+            width: 140px;
             left: 50%;
             top: 50%;
             -webkit-transform: translate(-50%, -50%);

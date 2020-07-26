@@ -1,0 +1,18 @@
+{
+  "manifest_version": 2,
+  "name": "Angular Chorme Test App",
+  "description": "extension desc",
+  "version": "1.0",
+  "browser_action": {
+      "default_icon": {
+        "16": "images/icon16.png",
+        "24": "images/icon24.png",
+        "32": "images/icon32.png"
+      },
+      "default_title": "Angular Title",
+      "default_popup": "index.html"
+  },
+  "permissions": [],
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+
+}

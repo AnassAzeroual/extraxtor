@@ -9,7 +9,6 @@ import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { AppComponent } from './app.component';
 import { Sp01Component } from './shared/speeners/sp01/sp01.component';
-import { GridListEmailsComponent } from './components/grid-list-emails/grid-list-emails.component';
 import { AccueilComponent } from './components/accueil/accueil.component';
 import { GetByUrlComponent } from './shared/get-by-url/get-by-url.component';
 import { GetByTextComponent } from './shared/get-by-text/get-by-text.component';
@@ -18,7 +17,6 @@ import { GetByTextComponent } from './shared/get-by-text/get-by-text.component';
   declarations: [
     AppComponent,
     Sp01Component,
-    GridListEmailsComponent,
     AccueilComponent,
     GetByUrlComponent,
     GetByTextComponent

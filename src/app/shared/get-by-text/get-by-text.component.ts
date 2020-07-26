@@ -36,7 +36,7 @@ export class GetByTextComponent implements OnInit {
         this.notifay(email, "warn", "Email deplicated was removed");
         return false;
       }
-  
+
       return true;
     }
 
@@ -53,7 +53,7 @@ export class GetByTextComponent implements OnInit {
 
     //* declare new container of emails and init input
     let emails: any = this.emails;
-    this.emails = "";
+    this.emails = [];
 
     //* regx split
     emails = emails.split(/[,/+*'`$%!><^:;=&~|\\" "\n\t]/);
@@ -66,10 +66,6 @@ export class GetByTextComponent implements OnInit {
       if (re.test(String(e).toLowerCase())) {
         if (this.checkEmailsDeplicat(e)) {
           this.emails += e.toLowerCase() + ",";
-        }
-      } else {
-        if (e.indexOf("@") >= 0) {
-          this.notifay(e, "warn", "Email no valide format!");
         }
       }
     });
