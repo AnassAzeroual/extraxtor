@@ -17,21 +17,21 @@ export class GetByUrlComponent implements OnInit {
   fileUrl;
   dataHTML: any;
   url: string;
-  showSpeener:boolean = false
+  showSpeener: boolean = false
   urlForm: any;
   emailsContainer: any = ''
-  downloadable:boolean = false
-  disableZone:boolean = false
+  downloadable: boolean = false
+  disableZone: boolean = false
   tableEmails: any[];
   constructor(
     private messageService: MessageService,
     private sanitizer: DomSanitizer,
-    private getByUrlService:GetByUrlService) {
-      this.urlForm = new FormGroup({
-        url: new FormControl('',Validators.required),
-        emails: new FormControl('')
-      });
-    }
+    private getByUrlService: GetByUrlService) {
+    this.urlForm = new FormGroup({
+      url: new FormControl('', Validators.required),
+      emails: new FormControl('')
+    });
+  }
 
   ngOnInit() {
     this.getByUrl()
@@ -39,7 +39,9 @@ export class GetByUrlComponent implements OnInit {
 
   /* ---------------------------- checkEmailsFormat --------------------------- */
 
-  checkEmailsFormat(data:any): boolean {
+  checkEmailsFormat(data: any): boolean {
+    console.log(data);
+
     //* hide BTN Download File
     (data.length > 0) ? this.downloadable = true : this.downloadable = false;
     //* check if data empty
@@ -63,13 +65,13 @@ export class GetByUrlComponent implements OnInit {
         if (this.checkEmailsDeplicat(e)) {
           this.emailsContainer += e.toLowerCase() + ",";
           this.tableEmails.push({
-            email:e
+            email: e
           })
         }
       }
     });
     //* show/hide zone emails
-    this.disableZone = (this.emailsContainer.indexOf("@") >= 0)?true:false
+    this.disableZone = (this.emailsContainer.indexOf("@") >= 0) ? true : false
 
     this.urlForm.controls['emails'].setValue(this.emailsContainer)
     this.showSpeener = false
@@ -89,59 +91,54 @@ export class GetByUrlComponent implements OnInit {
 
   /* -------------------------------- notifay --------------------------------- */
 
-notifay(details: string, status: string, message: string) {
-  this.messageService.add({
-    severity: status,
-    summary: message,
-    detail: details
-  });
-}
-
-
-
-//**********************************************/
-downlad(){
-  //* check if empty result
-  if (this.emailsContainer.length > 0) {
-    const blob = new Blob([this.emailsContainer], { type: 'application/octet-stream' });
-    this.fileUrl = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(blob));
+  notifay(details: string, status: string, message: string) {
+    this.messageService.add({
+      severity: status,
+      summary: message,
+      detail: details
+    });
   }
-}
 
-//*********************************************** */
-getByUrl()
-{
-  if(this.urlForm.invalid) return
-  this.showSpeener = true
-  this.urlForm.controls['emails'].setValue('')
 
-  let regxURL = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/
 
-  if (regxURL.test(this.urlForm.get('url').value))
-  {
-    this.getByUrlService.getByURL(this.urlForm.get('url').value)
-    .subscribe(
-      res =>
-      {
-        this.checkEmailsFormat(res['html'])
-      }
-    )
+  //**********************************************/
+  downlad() {
+    //* check if empty result
+    if (this.emailsContainer.length > 0) {
+      const blob = new Blob([this.emailsContainer], { type: 'application/octet-stream' });
+      this.fileUrl = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(blob));
+    }
   }
-  else
-  {
-    this.showSpeener = false
-    this.urlForm.controls['url'].setValue('')
-    this.notifay('Error invalid URL format','error','Error')
+
+  //*********************************************** */
+  getByUrl() {
+    if (this.urlForm.invalid) return
+    this.showSpeener = true
+    this.urlForm.controls['emails'].setValue('')
+
+    let regxURL = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/
+
+    if (regxURL.test(this.urlForm.get('url').value)) {
+      this.getByUrlService.getByURL(this.urlForm.get('url').value)
+        .subscribe(
+          res => {
+            this.checkEmailsFormat(res)
+          }
+        )
+    }
+    else {
+      this.showSpeener = false
+      this.urlForm.controls['url'].setValue('')
+      this.notifay('Error invalid URL format', 'error', 'Error')
+    }
   }
-}
 
 
-/* -------------------------------------------------------------------------- */
-/*                                    Copy                                    */
-/* -------------------------------------------------------------------------- */
-copy(data)
-{
-  console.log(data);
-copy(data)
-}
+  /* -------------------------------------------------------------------------- */
+  /*                                    Copy                                    */
+  /* -------------------------------------------------------------------------- */
+  copy(data) {
+    console.log(data);
+    copy(data)
+  }
 }

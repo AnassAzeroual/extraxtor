@@ -6,12 +6,11 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 })
 export class GetByUrlService {
   httpOptions = {
-    headers: new HttpHeaders({"Access-Control-Allow-Origin" : "https://quiet-stream-11534.herokuapp.com" })
+    headers: new HttpHeaders({ "Access-Control-Allow-Origin": "https://quiet-stream-11534.herokuapp.com" })
   };
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  getByURL(url:string)
-  {
-    return this.http.post("https://quiet-stream-11534.herokuapp.com/getdata",{"url":url})
+  getByURL(url: string) {
+    return this.http.post("http://localhost:3000/getHTML", { "url": url })
   }
 }
